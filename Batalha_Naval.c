@@ -60,6 +60,9 @@ void exibeJogo(int tabuleiro[10][10]){
 			case 9:
 				letra = 'J';
 				break;
+			default:
+				printf("Tente de novo");
+				contl--;
 		}
 		printf("\n    +---+---+---+---+---+---+---+---+---+---+\n");
 		for(contc=0;contc<=9;contc++){
@@ -157,133 +160,149 @@ void MatrizAdversario(){//função para a IA escolher as jogadas
 
 int MatrizJogador(void)  //função para o usuário fazer as jogadas
 {
-  setlocale(LC_ALL, "Portuguese");
-  int l,c,i,s;
-  iniciaJogo();
-  char l2;
-  bool colunaOK = true, linhaOK = true;
-  printf("Escolha onde deseja colocar seus barcos\n\n"); //definindo a quantidade de vezes que o for irá acontecer, é possível definir a quatidade de barcos no tabuleiro
-  for(i=1;i<=2;i++){
-  		if(colunaOK == true){
-	  		printf("Escolha uma linha de A até J:");
-	  		scanf("%s", &l2);
-		  	switch (l2){
-			  	case 'a':
-		  			l = 0;
-		  			linhaOK = true;
-		  			break;
-		  		case 'b':
-		  			l = 1;
-		  			linhaOK = true;
-		  			break;
-		  		case 'c':
-		  			l = 2;
-		  			linhaOK = true;
-		  			break;
-		  		case 'd':
-		  			l = 3;
-		  			linhaOK = true;
-		  			break;
-		  		case 'e':
-		  			l = 4;
-		  			linhaOK = true;
-		  			break;
-		  		case 'f':
-		  			l = 5;
-		  			linhaOK = true;
-		  			break;
-		  		case 'g':
-		  			l = 6;
-		  			linhaOK = true;
-		  			break;
-		  		case 'h':
-		  			l = 7;
-		  			linhaOK = true;
-		  			break;
-		  		case 'i':
-		  			l = 8;
-		  			linhaOK = true;
-		  			break;
-		  		case 'j':
-		  			l = 9;
-		  			linhaOK = true;
-		  			break;
-		  		default:
-		  			printf("Essa linha não existe.\nPor favor escolha uma letra entre A e J.\n\n");
-		  			linhaOK = false;
-		  			if (i>1){
-		  				i = i-1;
-		  			}
-		  			else{
-		  				i = 1;
-					  }
+	int l,c,i,s;
+	iniciaJogo();
+	char l2;
+	bool colunaOK = true, linhaOK = true;
+	printf("Escolha onde deseja colocar seus barcos\n\n"); //definindo a quantidade de vezes que o for irá acontecer, é possível definir a quatidade de barcos no tabuleiro
+	for(i=1;i<=2;i++)
+	{
+		if(colunaOK == true)
+		{
+			printf("Escolha uma linha de A até J:");
+			scanf("%s", &l2);
+			switch (l2)
+			{
+				case 'a':
+					l = 0;
+					linhaOK = true;
+					break;
+				case 'b':
+					l = 1;
+					linhaOK = true;
+					break;
+				case 'c':
+					l = 2;
+					linhaOK = true;
+					break;
+				case 'd':
+					l = 3;
+					linhaOK = true;
+					break;
+				case 'e':
+					l = 4;
+					linhaOK = true;
+					break;
+				case 'f':
+					l = 5;
+					linhaOK = true;
+					break;
+				case 'g':
+					l = 6;
+					linhaOK = true;
+					break;
+				case 'h':
+					l = 7;
+					linhaOK = true;
+					break;
+				case 'i':
+					l = 8;
+					linhaOK = true;
+					break;
+				case 'j':
+					l = 9;
+					linhaOK = true;
+					break;
+				default:
+					printf("Essa linha não existe.\nPor favor escolha uma letra entre A e J.\n\n");
+					linhaOK = false;
+					if (i>1)
+					{
+						i = i-1;
+					}
+					else
+					{
+						i = 1;
+					}
 					break;
 			}
-			
 		}
-		
-		if (linhaOK == true){
+		if (linhaOK == true)
+		{
 			printf("Escolha uma coluna entre 1 e 10:");
 			scanf("%i",&c);
 			printf("\n");
-			if (c<0 || c>10){
+			if (c<0 || c>10)
+			{
 				printf("Jogada inválida. Por favor, escolha uma coluna entre 1 e 10.");
 				colunaOK = false;
-				if (i>1){
+				if (i>1)
+				{
 					i = i-1;
 				}
-				else{
+				else
+				{
 					i = 1;
 				}
 			}
-			else{
+			else
+			{
 				c = c-1;
 				colunaOK = true;
-				}
-			
-		}
-	if(linhaOK == true && colunaOK == true){
-		if (jogador1.jogada[l][c] == 1){
-			printf("Você já preencheu essa casa, por favor escolha outra.\n");
-			i = i-1;
-			exibeJogo(jogador1.jogada);
-		}
-		else if(jogador1.jogada[l][c] == 0){
-			jogador1.jogada[l][c] = 1;
-			exibeJogo(jogador1.jogada);
+			}
 		}
 		
-	}	
-  }
+		if(linhaOK == true && colunaOK == true)
+		{
+			if (jogador1.jogada[l][c] == 1)
+			{
+				printf("Você já preencheu essa casa, por favor escolha outra.\n");
+				i = i-1;
+				exibeJogo(jogador1.jogada);
+			}
+			else if(jogador1.jogada[l][c] == 0)
+			{
+				jogador1.jogada[l][c] = 1;
+				exibeJogo(jogador1.jogada);
+			}
+		}	
+	}
 }
 
-bool verificaMatriz(){
+bool verificaMatriz()
+{
 	bool fimDeJogo;
 	int contl,contc;
-	for(contl=0;contl<=9;contl++){
-		for(contc=0;contc<=9;contc++){
-			if(jogador1.jogada[contl][contc] == 1 || jogador2.jogada[contl][contc] == 1){
+	for(contl=0;contl<=9;contl++)
+	{
+		for(contc=0;contc<=9;contc++)
+		{
+			if(jogador1.jogada[contl][contc] == 1 || jogador2.jogada[contl][contc] == 1)
+			{
 				fimDeJogo = false;
 				break;
 			}
-			else{
+			else
+			{
 				fimDeJogo = true;
 			}
 		}
-		
 	}
 	return fimDeJogo;
 }
 
-void jogadaAdversario(){
+void jogadaAdversario()
+{
 	int l,c;
 	char l2;
 	srand(time(NULL));
 	l = rand()%11;
 	c = rand()%11;
 	jogador2.ataque[l][c] = 1;
-	if (jogador2.ataque[l][c] == jogador1.jogada[l][c]){
-		switch(l){
+	if (jogador2.ataque[l][c] == jogador1.jogada[l][c])
+	{
+		switch(l)
+		{
 			case 0:
 				l2 = 'A';
 			case 1:
@@ -308,25 +327,32 @@ void jogadaAdversario(){
 		printf("O seu barco da coordenada %c%i foi atingido.\n",l2,c);
 		jogador1.jogada[l][c] == 0;
 		}
-	else{
+	else
+	{
 		printf("O inimigo errou o tiro.\n");
 	}
 }
 
 
-void main(void){
-	MatrizJogador();
-	MatrizAdversario();
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
 	char l2;
 	int l,c;
 	bool fimDeJogo = false;
+
+	MatrizJogador();
+	MatrizAdversario();
+	
 	system("cls");
 	printf("Hora de começar!\n");
-	while(fimDeJogo == false){
-		
+
+	while(fimDeJogo == false)
+	{
 		printf("Escolha uma linha:");
 		scanf("%s",&l2);
-		switch(l2){
+		switch(l2)
+		{
 			case 'a':
 				l = 0;
 			case 'b':
@@ -351,12 +377,14 @@ void main(void){
 		printf("Escolha o número da coluna:");
 		scanf("%i", &c);
 		jogador1.ataque[l][c] = 1;
-		if (jogador1.ataque[l][c] == jogador2.jogada[l][c]){
+		if (jogador1.ataque[l][c] == jogador2.jogada[l][c])
+		{
 			printf("Parábens você acertou\n");
 			jogador2.jogada[l][c] = 0;
 			jogador1.campo[l][c] = 2;
 		}
-		else{
+		else
+		{
 			printf("Você errou\n");
 			jogador1.campo[l][c] = 1;
 		}
@@ -365,8 +393,9 @@ void main(void){
 		exibeCampo(jogador1.campo);
 		p = verificaMatriz();
 	}
-	if(fimDeJogo == true){
-		printf("Fim de jogo");
-	}
+
+	printf("Fim de jogo");
+	return(0);
+	
 	
 }
