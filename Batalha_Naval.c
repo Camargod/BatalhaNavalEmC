@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-struct campo{
+struct campo
+{
 	int ataque[10][10];
 	int jogada[10][10];
 	int campo[10][10];
@@ -13,7 +14,9 @@ struct campo{
 struct campo jogador1;
 struct campo jogador2;
 
-void iniciaJogo(){//inicia os tabuleiros e preenche com zeros
+//inicia os tabuleiros e preenche com zeros
+void iniciaJogo()
+{
 	memset(&jogador1.jogada,0,100);//matriz do jogador
 	memset(&jogador1.ataque,0,100);//matriz do jogador para atacar o adversário
 	memset(&jogador2.jogada,0,100);//matriz do adversario
@@ -24,12 +27,15 @@ void iniciaJogo(){//inicia os tabuleiros e preenche com zeros
 void exibeJogo(int tabuleiro[10][10]){
 	int contl,contc;
 	char letra;
-	for(contl=0;contl<=9;contl++){
-		if(contl==0){
+	for(contl=0;contl<=9;contl++)
+	{
+		if(contl==0)
+		{
 			printf("\n");
 			printf("    | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10|");
 		}
-		switch(contl){
+		switch(contl)
+		{
 			case 0:
 				letra = 'A';
 				break;
@@ -85,8 +91,10 @@ void exibeJogo(int tabuleiro[10][10]){
 void exibeCampo(int tabuleiro[10][10]){
 	int contl,contc;
 	char letra;
-	for(contl=0;contl<=9;contl++){
-		if(contl==0){
+	for(contl=0;contl<=9;contl++)
+	{
+		if(contl==0)
+		{
 			printf("\n");
 			printf("    | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10|");
 		}
@@ -123,17 +131,22 @@ void exibeCampo(int tabuleiro[10][10]){
 				break;
 		}
 		printf("\n    +---+---+---+---+---+---+---+---+---+---+\n");
-		for(contc=0;contc<=9;contc++){
-			if(contc==0){
+		for(contc=0;contc<=9;contc++)
+		{
+			if(contc==0)
+			{
 				printf("  %c |",letra);
 			}
-			if(tabuleiro[contl][contc] == 2){//marco um X se o jogador acertar o navio inimigo
+			if(tabuleiro[contl][contc] == 2)
+			{//marco um X se o jogador acertar o navio inimigo
 				printf(" X |");
 			}
-			else if(tabuleiro[contl][contc] == 1){
+			else if(tabuleiro[contl][contc] == 1)
+			{
 				printf("~ ~|");//marca dessa forma se o jogador acertar na água
 			}
-			else{
+			else
+			{
 				printf("   |");
 			}
 			
@@ -326,7 +339,7 @@ void jogadaAdversario()
 		}
 		printf("O seu barco da coordenada %c%i foi atingido.\n",l2,c);
 		jogador1.jogada[l][c] == 0;
-		}
+	}
 	else
 	{
 		printf("O inimigo errou o tiro.\n");
@@ -396,6 +409,4 @@ int main()
 
 	printf("Fim de jogo");
 	return(0);
-	
-	
 }
